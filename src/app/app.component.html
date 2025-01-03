@@ -1,0 +1,163 @@
+<style>
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  li a {
+    color: #116d7e;
+    font-size: 1.5rem;
+    font-family: Poppins,Roboto,Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    display: block;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+  }
+  li {
+    display: inline;
+    float: right;
+  }
+
+  img {
+    display: flex;
+    float: left;
+  }
+
+  .navbar {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    height: 85px;
+  }
+  .catch-page {
+    background-color: #116d7e;
+    display: block;
+    height: 1000px;
+    padding: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 80px;
+    overflow: hidden;
+  }
+  .intro {
+    font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-weight: 700;
+    text-align: center;
+    color: #edf2e8;
+  }
+  .summary {
+    font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-weight: 300;
+    text-align: center;
+    color: #edf2e8;
+    font-size: 1.25rem;
+    max-width: 800px;
+  }
+  .catchphrase1 {
+    font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    line-height: 110%;
+    font-size: 85px;
+    text-align: center;
+    color: #edf2e8;
+    margin: 15px;
+    text-align: center;
+    transform: translateX(0%);
+  }
+  .catchphrase2 {
+    font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    line-height: 110%;
+    font-size: 85px;
+    text-align: center;
+    color: #edf2e8;
+    margin: 15px;
+    text-align: center;
+    transform: translateX(10%);
+  }
+  .centered-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bubbleContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    overflow: hidden; /* Keep bubbles within bounds */
+  }
+  .bubble {
+    position: absolute;
+    bottom: 0; /* Start from the bottom */
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent bubble */
+    border-radius: 50%; /* Make it round */
+    animation: rise 5s linear infinite; /* Move upward */
+  }
+  @keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+  }
+</style>
+
+<main class="main">
+  <div class="navbar">
+    <img src="assets/logo.png"/>
+    <ul>
+      <li><a href="calendar.asp">Calendar</a></li>
+      <li><a href="products.asp">Products</a></li>
+      <li><a href="contact.asp">Contact</a></li>
+      <li><a href="about.asp">About Us</a></li>
+    </ul>
+  </div>
+  <div class="catch-page">
+    <p class="intro">research management</p>
+    <p class="catchphrase1"> Simplifying Research... </p>
+    <p class="catchphrase2"> Amplifying Results</p>
+    <div class="centered-text">
+      <p class="summary"> Empower clinical research teams to streamline workflows, centralize data, and enhance collaboration, enabling faster insights and confident decision-making </p>
+    </div>
+    <div class="bubbleContainer" id="bubbleContainer">
+
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const bubbleContainer = document.getElementById('bubbleContainer');
+
+      function createBubble() {
+          const bubble = document.createElement('div');
+          bubble.classList.add('bubble');
+
+          const size = Math.random() * 30 + 10; // Bubble size between 10px and 40px
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+
+          bubbleContainer.appendChild(bubble);
+
+          setTimeout(() => {
+              bubble.remove();
+          }, 5000); // Matches animation duration
+      }
+
+      setInterval(createBubble, 300); // Generate a bubble every 300ms
+  });
+</script>
+
+
+<router-outlet />
