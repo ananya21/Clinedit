@@ -87,19 +87,19 @@
   }
 
   .bubbleContainer {
-    position: relative;
-    width: 100%;
+    position: absolute;
+    width: 80%;
     height: 700px;
     overflow: hidden;
+    will-change: transform;
 }
 
 @keyframes rise {
         0% {
-            bottom: -700px;
-            opacity: 1;
+                top: 0px;
         }
         100% {
-            bottom: 500px;
-            opacity: 0;
+                bottom: 5px;
         }
 }
+
