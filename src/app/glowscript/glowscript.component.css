@@ -1,0 +1,8 @@
+
+#glowscript {
+  width: 900px;
+  height: 600px; /* Adjust the height as needed */
+  margin: 50px auto;
+  margin-left: calc(50% - 450px);
+  position: relative;
+}

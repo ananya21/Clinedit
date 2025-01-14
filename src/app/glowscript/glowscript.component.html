@@ -1,0 +1,70 @@
+<div id="glowscript" class="glowscript" style="width: 600px; height: 600px;"></div>
+
+<script type="text/javascript">
+  (function () {
+    function __main__() {
+      const scene = canvas(); // Create a 3D canvas
+      scene.background = vec(0.06666666666, 0.42745098039, 0.49411764705);
+
+      // DNA Helix Visualization
+
+      // Parameters for the helix
+      const radius = 2; // Radius of the helix
+      const pitch = 10; // Vertical spacing between turns
+      const turns = 20; // Number of turns in the helix
+      const pointsPerTurn = 50; // Smoothness of the helix
+      const basePairsPerTurn = 4; // Number of base pairs per turn
+
+      // Function to generate helix points
+      function generateHelix(radius, pitch, turns, offset = 0) {
+        const points = [];
+        const totalPoints = turns * pointsPerTurn;
+
+        for (let i = 0; i < totalPoints; i++) {
+          const theta = (2 * Math.PI * i) / pointsPerTurn;
+          const x = radius * Math.cos(theta + offset);
+          const y = radius * Math.sin(theta + offset);
+          const z = (pitch * i) / pointsPerTurn;
+          points.push(vec(x, y, z));
+        }
+
+        return points;
+      }
+
+      // Generate the two helices
+      const helix1 = generateHelix(radius, pitch, turns);
+      const helix2 = generateHelix(radius, pitch, turns, Math.PI); // Offset by π for second strand
+
+      // Draw the helices
+      for (const point of helix1) {
+        box({ pos: point, size: vec(0.2, 0.2, 0.2), color: color.red });
+      }
+
+      for (const point of helix2) {
+        box({ pos: point, size: vec(0.2, 0.2, 0.2), color: color.blue });
+      }
+
+      // Add base pairs (cylinders between the helices)
+      const stepSize = Math.floor(pointsPerTurn / basePairsPerTurn);
+      for (let i = 0; i < helix1.length; i += stepSize) {
+        const basePairStart = helix1[i];
+        const basePairEnd = helix2[i];
+        const midpoint = basePairStart.add(basePairEnd).div(2); // Midpoint for visual alignment
+        const axis = basePairEnd.sub(basePairStart);
+
+        // Add a cylinder to represent the base pair
+        cylinder({
+          pos: basePairStart,
+          axis: axis,
+          radius: 0.05,
+          color: color.green
+        });
+      }
+    }
+
+    // Bind GlowScript to the container
+    window.__context = { glowscript_container: document.getElementById('glowscript') };
+    __main__();
+  })();
+</script>
+
