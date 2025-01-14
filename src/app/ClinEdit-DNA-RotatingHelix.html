@@ -1,0 +1,262 @@
+<div id="glowscript" class="glowscript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
+<link type="text/css" href="https://www.glowscript.org/css/ide.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/glow.3.2.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/RSrun.3.2.min.js"></script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+
+// START JAVASCRIPT
+;(function() {;
+var ρσ_modules = {};
+ρσ_modules.pythonize = {};
+
+(function(){
+    function strings() {
+        var string_funcs, exclude, name;
+        string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+        if (!arguments.length) {
+            exclude = (function(){
+                var s = ρσ_set();
+                s.jsset.add("split");
+                s.jsset.add("replace");
+                return s;
+            })();
+        } else if (arguments[0]) {
+            exclude = Array.prototype.slice.call(arguments);
+        } else {
+            exclude = null;
+        }
+        if (exclude) {
+            string_funcs = string_funcs.difference(set(exclude));
+        }
+        var ρσ_Iter0 = string_funcs;
+        ρσ_Iter0 = ((typeof ρσ_Iter0[Symbol.iterator] === "function") ? (ρσ_Iter0 instanceof Map ? ρσ_Iter0.keys() : ρσ_Iter0) : Object.keys(ρσ_Iter0));
+        for (var ρσ_Index0 of ρσ_Iter0) {
+            name = ρσ_Index0;
+            (ρσ_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name] = (ρσ_expr_temp = ρσ_str.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name];
+        }
+    };
+    if (!strings.__module__) Object.defineProperties(strings, {
+        __module__ : {value: "pythonize"}
+    });
+
+    ρσ_modules.pythonize.strings = strings;
+})();
+async function __main__() {
+"use strict";
+    var display = canvas;
+    var scene = canvas();
+
+    function round(num, n=0) {return Number(num.toFixed(n))}
+
+    var version, print, arange, __name__, type, ρσ_ls, radius, pitch, turns, points_per_turn, base_pairs_per_turn, helix1, helix2, rotated_helix1, rotated_helix2, rna_helix, snd_rna_helix, base_pairs, step_size, midpoint, base_pair1, base_pair2, i, time, dz, new_pos1, new_pos2, base_pair_index;
+    version = ρσ_list_decorate([ "3.2", "glowscript" ]);
+    Array.prototype['+'] = function(r) {return this.concat(r)}
+    Array.prototype['*'] = function(r) {return __array_times_number(this, r)}
+    window.__GSlang = "vpython";
+    print = GSprint;
+    arange = range;
+    __name__ = "__main__";
+    type = pytype;
+    var strings = ρσ_modules.pythonize.strings;
+
+    strings();
+    "13";
+    scene.background = vec(.06666666666, .42745098039, .49411764705);
+    "16";
+    radius = 2;
+    "17";
+    pitch = 10;
+    "18";
+    turns = 20;
+    "19";
+    points_per_turn = 50;
+    "20";
+    base_pairs_per_turn = 8;
+    "23";
+    async function generate_helix() {
+        var radius = ( 0 === arguments.length["-"](1) && arguments[arguments.length["-"](1)] !== null && typeof arguments[arguments.length["-"](1)] === "object" && arguments[arguments.length["-"](1)] [ρσ_kwargs_symbol] === true) ? undefined : arguments[0];
+        var pitch = ( 1 === arguments.length["-"](1) && arguments[arguments.length["-"](1)] !== null && typeof arguments[arguments.length["-"](1)] === "object" && arguments[arguments.length["-"](1)] [ρσ_kwargs_symbol] === true) ? undefined : arguments[1];
+        var turns = ( 2 === arguments.length["-"](1) && arguments[arguments.length["-"](1)] !== null && typeof arguments[arguments.length["-"](1)] === "object" && arguments[arguments.length["-"](1)] [ρσ_kwargs_symbol] === true) ? undefined : arguments[2];
+        var offset = (arguments[3] === undefined || ( 3 === arguments.length["-"](1) && arguments[arguments.length["-"](1)] !== null && typeof arguments[arguments.length["-"](1)] === "object" && arguments[arguments.length["-"](1)] [ρσ_kwargs_symbol] === true)) ? generate_helix.__defaults__.offset : arguments[3];
+        var ρσ_kwargs_obj = arguments[arguments.length["-"](1)];
+        if (ρσ_kwargs_obj === null || typeof ρσ_kwargs_obj !== "object" || ρσ_kwargs_obj [ρσ_kwargs_symbol] !== true) ρσ_kwargs_obj = {};
+        if (Object.prototype.hasOwnProperty.call(ρσ_kwargs_obj, "offset")){
+            offset = ρσ_kwargs_obj.offset;
+        }
+        var ρσ_ls, points, total_points, theta, x, y, z, i;
+        "24";
+        points = ρσ_list_decorate([]);
+        "25";
+        total_points = turns["*"](points_per_turn);
+        "26";
+        for (var ρσ_Index1 = 0; ρσ_Index1["<"](total_points); ρσ_Index1++) {
+            i = ρσ_Index1;
+            "27";
+            theta = 2["*"](pi)["*"](i)["/"](points_per_turn);
+            "28";
+            x = radius["*"](cos(theta["+"](offset)));
+            "29";
+            y = radius["*"](sin(theta["+"](offset)));
+            "30";
+            z = pitch["*"](i)["/"](points_per_turn);
+            "31";
+            points.append(vec(x, y, z));
+        }
+        "32";
+        return points;
+    };
+    if (!generate_helix.__defaults__) Object.defineProperties(generate_helix, {
+        __defaults__ : {value: {offset:0}},
+        __handles_kwarg_interpolation__ : {value: true},
+        __argnames__ : {value: ["radius", "pitch", "turns", "offset"]},
+        __module__ : {value: null}
+    });
+
+    "35";
+    async function rotate_points(points, axis, angle) {
+        var ρσ_ls, rotated_points, rotated_point, point;
+        "36";
+        rotated_points = ρσ_list_decorate([]);
+        "37";
+        var ρσ_Iter2 = points;
+        ρσ_Iter2 = ((typeof ρσ_Iter2[Symbol.iterator] === "function") ? (ρσ_Iter2 instanceof Map ? ρσ_Iter2.keys() : ρσ_Iter2) : Object.keys(ρσ_Iter2));
+        for (var ρσ_Index2 of ρσ_Iter2) {
+            point = ρσ_Index2;
+            "39";
+            rotated_point = ρσ_interpolate_kwargs.call(this, rotate, [point].concat([ρσ_desugar_kwargs({angle: angle, axis: axis})]));
+            "40";
+            rotated_points.append(rotated_point);
+        }
+        "41";
+        return rotated_points;
+    };
+    if (!rotate_points.__argnames__) Object.defineProperties(rotate_points, {
+        __argnames__ : {value: ["points", "axis", "angle"]},
+        __module__ : {value: null}
+    });
+
+    "44";
+    async function center_helix(points) {
+        var ρσ_ls, z_coords, p, z_mid, centered_points;
+        "46";
+        z_coords = (function() {
+            var ρσ_Iter = points, ρσ_Result = [], p;
+            ρσ_Iter = ((typeof ρσ_Iter[Symbol.iterator] === "function") ? (ρσ_Iter instanceof Map ? ρσ_Iter.keys() : ρσ_Iter) : Object.keys(ρσ_Iter));
+            for (var ρσ_Index of ρσ_Iter) {
+                p = ρσ_Index;
+                ρσ_Result.push(p.z);
+            }
+            ρσ_Result = ρσ_list_constructor(ρσ_Result);
+            return ρσ_Result;
+        })();
+        "47";
+        z_mid = min(z_coords)["+"](max(z_coords))["/"](2);
+        "49";
+        centered_points = (function() {
+            var ρσ_Iter = points, ρσ_Result = [], p;
+            ρσ_Iter = ((typeof ρσ_Iter[Symbol.iterator] === "function") ? (ρσ_Iter instanceof Map ? ρσ_Iter.keys() : ρσ_Iter) : Object.keys(ρσ_Iter));
+            for (var ρσ_Index of ρσ_Iter) {
+                p = ρσ_Index;
+                ρσ_Result.push(vec(p.x, p.y, p.z["-"](1["*"](z_mid))));
+            }
+            ρσ_Result = ρσ_list_constructor(ρσ_Result);
+            return ρσ_Result;
+        })();
+        "50";
+        return centered_points;
+    };
+    if (!center_helix.__argnames__) Object.defineProperties(center_helix, {
+        __argnames__ : {value: ["points"]},
+        __module__ : {value: null}
+    });
+
+    "53";
+    helix1 = (await generate_helix(radius, pitch, turns));
+    "54";
+    helix2 = await ρσ_list_decorate(ρσ_interpolate_kwargs.call(this, generate_helix, [radius, pitch, turns].concat([ρσ_desugar_kwargs({offset: pi})])));
+    "57";
+    helix1 = (await center_helix(helix1));
+    "58";
+    helix2 = (await center_helix(helix2));
+    "61";
+    rotated_helix1 = await ρσ_list_decorate(ρσ_interpolate_kwargs.call(this, rotate_points, [helix1].concat([ρσ_desugar_kwargs({axis: vec(1, 0, 0), angle: (await radians(90))})])));
+    "62";
+    rotated_helix2 = await ρσ_list_decorate(ρσ_interpolate_kwargs.call(this, rotate_points, [helix2].concat([ρσ_desugar_kwargs({axis: vec(1, 0, 0), angle: (await radians(90))})])));
+    "65";
+    rna_helix = ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: rotated_helix1, color: vec(.87058823529, .92156862745, .81176470588)})]);
+    "66";
+    snd_rna_helix = ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: rotated_helix2, color: vec(.87058823529, .92156862745, .81176470588)})]);
+    "68";
+    base_pairs = ρσ_list_decorate([]);
+    "69";
+    step_size = int(points_per_turn["/"](base_pairs_per_turn));
+    "70";
+    var ρσ_Iter3 = range(0, len(rotated_helix1), step_size);
+    ρσ_Iter3 = ((typeof ρσ_Iter3[Symbol.iterator] === "function") ? (ρσ_Iter3 instanceof Map ? ρσ_Iter3.keys() : ρσ_Iter3) : Object.keys(ρσ_Iter3));
+    for (var ρσ_Index3 of ρσ_Iter3) {
+        i = ρσ_Index3;
+        "72";
+        midpoint = ρσ_getitem(rotated_helix1, i)["+"](ρσ_getitem(rotated_helix2, i))["/"](2);
+        "75";
+        base_pair1 = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({pos: ρσ_getitem(rotated_helix1, i), axis: midpoint["-"](1["*"](ρσ_getitem(rotated_helix1, i))), radius: .05, color: vec(.99607843137, .94901960784, .54117647058)})]);
+        "76";
+        base_pair2 = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({pos: ρσ_getitem(rotated_helix2, i), axis: midpoint["-"](1["*"](ρσ_getitem(rotated_helix2, i))), radius: .05, color: vec(.53725490196, .58823529411, .99607843137)})]);
+        "79";
+        base_pairs.append([base_pair1, base_pair2]);
+    }
+    "81";
+    time = 0;
+    "82";
+    while (true) {
+        "83";
+        (await rate(100));
+        "84";
+        time=time["+"](.05);
+        "87";
+        var ρσ_Iter4 = range(len(rotated_helix1));
+        ρσ_Iter4 = ((typeof ρσ_Iter4[Symbol.iterator] === "function") ? (ρσ_Iter4 instanceof Map ? ρσ_Iter4.keys() : ρσ_Iter4) : Object.keys(ρσ_Iter4));
+        for (var ρσ_Index4 of ρσ_Iter4) {
+            i = ρσ_Index4;
+            "89";
+            dz = sin(time["+"](i["*"](.1)))["*"](.5);
+            "90";
+            new_pos1 = vec(ρσ_getitem(rotated_helix1, i).x, ρσ_getitem(rotated_helix1, i).y, ρσ_getitem(rotated_helix1, i).z["+"](dz));
+            "91";
+            new_pos2 = vec(ρσ_getitem(rotated_helix2, i).x, ρσ_getitem(rotated_helix2, i).y, ρσ_getitem(rotated_helix2, i).z["+"](dz));
+            "94";
+            dz = sin(time["+"](i["*"](.1)))["*"](.5);
+            "95";
+            rna_helix.modify(i, new_pos1);
+            "96";
+            snd_rna_helix.modify(i, new_pos2);
+            "99";
+            if (ρσ_equals(i["%"](step_size), 0)) {
+                "100";
+                base_pair_index = Math.floor(i["/"](step_size));
+                "101";
+                midpoint = new_pos1["+"](new_pos2)["/"](2);
+                "102";
+                ρσ_getitem(ρσ_getitem(base_pairs, base_pair_index), 0).pos = new_pos1;
+                "103";
+                ρσ_getitem(ρσ_getitem(base_pairs, base_pair_index), 0).axis = midpoint["-"](1["*"](new_pos1));
+                "104";
+                ρσ_getitem(ρσ_getitem(base_pairs, base_pair_index), 1).pos = new_pos2;
+                "105";
+                ρσ_getitem(ρσ_getitem(base_pairs, base_pair_index), 1).axis = midpoint["-"](1["*"](new_pos2));
+            }
+        }
+    }
+};
+if (!__main__.__module__) Object.defineProperties(__main__, {
+    __module__ : {value: null}
+});
+
+;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+// END JAVASCRIPT
+
+//--><!]]></script>
+</div>

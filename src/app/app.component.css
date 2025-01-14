@@ -7,7 +7,7 @@
   }
   li a {
     color: #116d7e;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-family: Poppins,Roboto,Helvetica,Arial,sans-serif;
     font-weight: 300;
     display: block;
@@ -29,7 +29,7 @@
     display: flex;
     flex: 1;
     justify-content: space-evenly;
-    height: 85px;
+    height: 60px;
   }
   .catch-page {
     background-color: #116d7e;
@@ -45,6 +45,7 @@
   .intro {
     font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
+    margin-top: -10px;
     font-weight: 700;
     text-align: center;
     color: #edf2e8;
@@ -55,14 +56,14 @@
     font-weight: 300;
     text-align: center;
     color: #edf2e8;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     max-width: 800px;
   }
   .catchphrase1 {
     font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
     font-weight: 200;
     line-height: 110%;
-    font-size: 85px;
+    font-size: 75px;
     text-align: center;
     color: #edf2e8;
     margin: 15px;
@@ -73,7 +74,7 @@
     font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
     font-weight: 200;
     line-height: 110%;
-    font-size: 85px;
+    font-size: 75px;
     text-align: center;
     color: #edf2e8;
     margin: 15px;
